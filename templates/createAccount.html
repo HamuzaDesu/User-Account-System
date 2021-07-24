@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - User Account System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <div class="screen">
+        <div class="container">
+            <h3>Create Account</h3>
+
+            <form action="/register" method="POST" class="form">
+                <input type="text" name="name" id="" placeholder="Name" class="formItem textInput" required>
+                
+                <input type="text" name="username" id="" placeholder="Username" class="formItem textInput" required>
+                <input type="password" name="password" id="" placeholder="Password" class="formItem textInput" required>
+
+                <input type="submit" value="Create Account" class="formItem submitButton">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

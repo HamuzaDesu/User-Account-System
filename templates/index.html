@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Account System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <div class="screen">
+        <div class="container">
+            <h3>Welcome {{ user.userName }}</h3>
+
+            <div class="accountDetails">
+                <span>Name: {{ user.name }}</span>
+                <span>Username: {{ user.userName }}</span>
+            </div>
+
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
