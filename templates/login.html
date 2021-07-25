@@ -12,7 +12,7 @@
         <div class="container">
             <h3>Sign in</h3>
 
-            <form action="/login" method="POST" class="loginForm">
+            <form action="/login" method="POST" class="loginForm" name='loginForm' onsubmit="submitDetails()">
                 <input type="text" name="username" id="usernameText" placeholder="  Username" class="formItem textInput" required>
                 <input type="password" name="password" id="passwordText" placeholder="  Password" class="formItem textInput" required>
 
@@ -22,5 +22,16 @@
             <a href="/register">Don't have an account? Register Here</a>
         </div>
     </div>
+
+    <script src="/static/bower_components/js-sha256/build/sha256.min.js"></script>
+
+    <script>
+        function submitDetails(){
+            var hash = sha256(document.loginForm.password.value)
+            document.loginForm.password.value = hash
+        }
+    </script>
+
+
 </body>
 </html>

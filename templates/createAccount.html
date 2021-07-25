@@ -14,15 +14,24 @@
         <div class="container">
             <h3>Create Account</h3>
 
-            <form action="/register" method="POST" class="form">
-                <input type="text" name="name" id="" placeholder="Name" class="formItem textInput" required>
+            <form action="/register" method="POST" class="form" onsubmit="submitDetails()" name="registerAccountForm" >
+                <input type="text" name="name" placeholder="Name" class="formItem textInput" required>
                 
-                <input type="text" name="username" id="" placeholder="Username" class="formItem textInput" required>
-                <input type="password" name="password" id="" placeholder="Password" class="formItem textInput" required>
+                <input type="text" name="username" placeholder="Username" class="formItem textInput" required>
+                <input type="password" name="password" placeholder="Password" class="formItem textInput" required>
 
                 <input type="submit" value="Create Account" class="formItem submitButton">
             </form>
         </div>
     </div>
+
+    <script src="/static/bower_components/js-sha256/build/sha256.min.js"></script>
+    <script>
+        function submitDetails(){
+            var hash = sha256(document.registerAccountForm.password.value)
+            document.registerAccountForm.password.value = hash
+        }
+    </script>
+
 </body>
 </html>

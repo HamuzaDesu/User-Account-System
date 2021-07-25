@@ -1,6 +1,5 @@
 from flask import Flask, render_template, redirect, session, request, jsonify
 from pymongo import MongoClient
-import hashlib
 import os
 
 app = Flask(__name__)
@@ -28,10 +27,7 @@ def login():
         accountDetails['password'] = request.form['password'].strip()
         accountDetails['username'] = request.form['username'].strip()
 
-        hashedPassword = hashlib.sha256(accountDetails['password'].encode('utf-8')).hexdigest()
-
-
-        user = userCollection.find_one({'username': accountDetails['username'],'hashedPassword': hashedPassword})
+        user = userCollection.find_one({'username': accountDetails['username'],'hashedPassword': accountDetails['password']})
         if user:
             # successful log in
             session['isLoggedIn'] = True
@@ -55,12 +51,11 @@ def register():
         return render_template('createAccount.html')
     else:
         accountDetails = request.form
-        hashedPassword = hashlib.sha256(accountDetails['password'].encode('utf-8')).hexdigest()
 
         userDetails = {
             'name': accountDetails['name'],
             'username': accountDetails['username'],
-            'hashedPassword': hashedPassword
+            'hashedPassword': accountDetails['password']
         }
         userCollection.insert_one(userDetails)
         return redirect('/login')
