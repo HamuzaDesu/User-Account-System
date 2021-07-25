@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, session, request, jsonify
+from flask import Flask, json, render_template, redirect, session, request, jsonify
 from pymongo import MongoClient
 import os
 
@@ -51,6 +51,9 @@ def register():
         return render_template('createAccount.html')
     else:
         accountDetails = request.form
+
+        if userCollection.find_one({'username': accountDetails['username']}):
+            return jsonify({'error': 'Username already Exists. Please try again.'})
 
         userDetails = {
             'name': accountDetails['name'],
